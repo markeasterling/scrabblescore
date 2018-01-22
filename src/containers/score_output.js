@@ -8,14 +8,14 @@ class ScoreOutput extends Component {
   render(){
     return (
       <div>
-        {this.props.score ? this.props.score.points : ''}
+        {this.props.score ?
+          `that's ${this.props.score.points} entire points` : ''}
       </div>
     )
   }
 }
 
 function mapStateToProps({ score }) {
-  console.log('score', score)
   return { score }
 }
 

@@ -15,14 +15,12 @@ class WordInput extends Component {
 
 
   onInputChange(event) {
-    console.log('input changed', event.target.value);
     this.setState({word: event.target.value});
   }
 
   onFormSubmit(event) {
     event.preventDefault();
     this.props.fetchScore(this.state.word)
-    console.log('submitted!', this.state.word);
     this.setState({word: ''})
   }
 
