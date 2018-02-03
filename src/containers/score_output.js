@@ -8,8 +8,7 @@ class ScoreOutput extends Component {
   render(){
     return (
       <div>
-        {this.props.score ?
-          `that's ${this.props.score.points} entire points` : ''}
+        {this.props.score && `${this.props.score.word}... that's ${this.props.score.points} entire points`}
       </div>
     )
   }

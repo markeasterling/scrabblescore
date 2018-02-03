@@ -1,8 +1,13 @@
 import { combineReducers } from 'redux';
-import ScoreReducer from './reducer_score';
+import score from './reducer_score';
+import tiles from './reducer_tiles';
+
+
+
 
 const rootReducer = combineReducers({
-  score: ScoreReducer
+  tiles,
+  score
 });
 
 export default rootReducer;
