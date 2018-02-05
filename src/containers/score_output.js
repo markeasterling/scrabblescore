@@ -3,12 +3,10 @@ import { connect } from 'react-redux';
 
 class ScoreOutput extends Component {
 
-
-
   render(){
     return (
       <div>
-        {this.props.score && `${this.props.score.word}... that's ${this.props.score.points} entire points`}
+        {this.props.score.word && `${this.props.score.word}... ${this.props.score.points} points!`}
       </div>
     )
   }
