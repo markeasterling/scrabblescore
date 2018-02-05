@@ -1,8 +1,9 @@
-import fetchTiles from './index';
+import { fetchTiles, FETCH_TILES } from './index';
 
-describe('actions', () => {
+
+describe('fetchin tiles', () => {
  it('should fetch some tiles', () =>{
-   expect(fetchTiles())
-   console.log(fetchTiles())
+    expect(fetchTiles().type).toEqual(FETCH_TILES);
+    expect(fetchTiles().payload.length).toEqual(7);
  })
 })
