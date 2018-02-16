@@ -20,23 +20,25 @@ export function fetchScore(word) {
   }
 }
 
-export function fetchTiles() {
-  console.log('in fetch tiles')
-  var tileBag = distribution.slice()
-  let n = 0;
-  let selectedTiles = [];
-  while (n < tilesToDraw) {
-    const randomIndex = Math.floor(Math.random() * tileBag.length)
-    const rand = tileBag[randomIndex];
-    selectedTiles.push({'id': n, 'tile': rand, 'used': false});
-    tileBag.slice(randomIndex,1)
-    n++
-  }
-  return {
-    type: FETCH_TILES,
-    payload: selectedTiles
-  }
-}
+// export function fetchTiles() {
+//   console.log('in fetch tiles')
+//   var tileBag = distribution.slice()
+//   let n = 0;
+//   let selectedTiles = [];
+//   while (n < tilesToDraw) {
+//     const randomIndex = Math.floor(Math.random() * tileBag.length)
+//     const rand = tileBag[randomIndex];
+//     selectedTiles.push({'id': n, 'tile': rand, 'used': false});
+//     tileBag.slice(randomIndex,1)
+//     n++
+//   }
+//   return {
+//     type: FETCH_TILES,
+//     payload: selectedTiles
+//   }
+// }
+
+export function fetchTiles() { return { type : FETCH_TILES } };
 
 export function toggleTile(tile) {
 

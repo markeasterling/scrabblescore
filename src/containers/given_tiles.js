@@ -12,7 +12,7 @@ class GivenTiles extends Component {
     this.state = {activeLetters: []}
   }
 
-  componentDidMount() {
+  componentWillMount() {
     this.props.fetchTiles()
   }
 
@@ -54,16 +54,15 @@ class GivenTiles extends Component {
   }
 
   renderTiles() {
-    return this.props.tiles.map((tile, index) => {
-      return ( !tile.used &&
-        <div
-          className="tile"
-          key={index}
-          onClick= {()=> this.tileStuff(this.props.tiles[index])}
-        >
-          {tile.tile}
-        </div>)
-    })
+
+      console.log('render tiles',this.props.tiles)
+      return this.props.tiles.rack.map((tile, index) => {
+        console.log(Object.values(tile)[0])
+        const letter = Object.values(tile)[0]
+        return (
+          <div className="tile">{letter}</div>
+        )
+      })
   }
 
   generateWord() {
@@ -87,27 +86,7 @@ class GivenTiles extends Component {
   render(){
     return(
       <div>
-        <div className="givenTiles-rack">
-          <div>
-            {this.props.tiles && this.renderTiles()}
-          </div>
-        </div>
-
-        <div>
-        {this.generateWord()}
-        </div>
-
-        <button
-          onClick={()=>{
-            let word = ''
-            this.state.activeLetters.map((letter) => {
-              word = word.concat(letter.tile)
-            })
-              this.props.fetchScore(word)
-          }}
-        >
-          HOW MANY POINTS?
-        </button>
+        {this.renderTiles()}
       </div>
 
     )
