@@ -8,6 +8,9 @@ const tilesToDraw = 7;
 export const FETCH_SCORE = 'FETCH_SCORE';
 export const FETCH_TILES = 'FETCH_TILES';
 export const TOGGLE_TILE = 'TOGGLE_TILE';
+export const MOVE_TO_IN_PLAY = 'MOVE_TO_IN_PLAY';
+export const MOVE_TO_RACK = 'MOVE_TO_RACK';
+
 
 export function fetchScore(word) {
   const url = `${ROOT_URL}?word=${word}`
@@ -20,30 +23,26 @@ export function fetchScore(word) {
   }
 }
 
-// export function fetchTiles() {
-//   console.log('in fetch tiles')
-//   var tileBag = distribution.slice()
-//   let n = 0;
-//   let selectedTiles = [];
-//   while (n < tilesToDraw) {
-//     const randomIndex = Math.floor(Math.random() * tileBag.length)
-//     const rand = tileBag[randomIndex];
-//     selectedTiles.push({'id': n, 'tile': rand, 'used': false});
-//     tileBag.slice(randomIndex,1)
-//     n++
-//   }
-//   return {
-//     type: FETCH_TILES,
-//     payload: selectedTiles
-//   }
-// }
-
 export function fetchTiles() { return { type : FETCH_TILES } };
 
-export function toggleTile(tile) {
-
+export function moveToInPlay(tile) {
+  console.log(tile)
   return {
-    type: TOGGLE_TILE,
+    type : MOVE_TO_IN_PLAY,
     payload: tile
   }
 }
+
+export function moveToRack(tile) {
+  return {
+    type : MOVE_TO_RACK,
+    payload: tile
+  }
+}
+// export function toggleTile(tile) {
+//
+//   return {
+//     type: TOGGLE_TILE,
+//     payload: tile
+//   }
+// }

@@ -1,5 +1,7 @@
 import { FETCH_TILES } from '../actions/index';
 import { TOGGLE_TILE } from '../actions/index';
+import { MOVE_TO_RACK } from '../actions/index';
+import { MOVE_TO_IN_PLAY } from '../actions/index';
 
 const initialState = {
   rack: [],
@@ -12,34 +14,34 @@ function drawTiles(state) {
     let rack = state.rack.length ? state.rack : [];
     while (rack.length < 7) {
       const randomIndex = Math.floor(Math.random() * bag.length);
-      rack.push(... bag.splice(randomIndex,1))
+      rack.push(...bag.splice(randomIndex,1))
     };
   return Object.assign(state, {tileBag: bag}, {rack:rack})
 };
+
+function moveTile(selectedTile, state){
+  console.log('tile from move tile', selectedTile)
+  console.log('state from move tile',state)
+  let rack = [ ...state.rack ]
+  let inPlay = [ ...state.inPlay ]
+  let nuRack = rack.filter((tile) => tile !== selectedTile)
+  inPlay.push(selectedTile)
+  console.log(inPlay)
+  console.log(nuRack)
+  return Object.assign(state, {rack: nuRack}, { inPlay })
+}
 
 export default function(state = initialState, action) {
   console.log("ST8",state);
   // console.log(action)
   switch (action.type) {
 
+    case MOVE_TO_IN_PLAY:
+      return moveTile(action.payload, state)
     case FETCH_TILES:
       return drawTiles(state)
 
-
-
-
-    // case TOGGLE_TILE:
-    //   return state.map((tile, index) => {
-    //     console.log(tile, index, action.payload.id)
-    //     if (index === action.payload.id) {
-    //       return Object.assign({}, tile, {used: !tile.used
-    //       })
-    //     }
-    //     return tile
-    //   })
-    // default:
-    //   return state;
-  };
-
-  return state
+    default:
+      return state
+  }
 };
